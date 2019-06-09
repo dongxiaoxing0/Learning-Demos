@@ -1,0 +1,40 @@
+.wrapper {
+    position: relative;
+    width: 200px;
+    height: 0;
+    border-radius: 100%;
+    border-top: 100px solid black;
+    border-bottom: 100px solid white; 
+}
+.inner-left {
+    position: absolute;
+    top:-50px;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: white;
+    border: 40px solid black;
+}
+.inner-right {
+    position: absolute;
+    top: -50px;
+    left: 100px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: black;
+    border: 40px solid white;
+}
+.out {
+    position: relative;
+}
+.bottom {
+    position: absolute;
+    top:-2px;
+    left: -2px;
+    width: 200px;
+    height: 200px;
+    border: 2px solid black;
+    border-radius: 50%;
+}
