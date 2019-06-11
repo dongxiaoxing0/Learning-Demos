@@ -83,37 +83,84 @@
             </footer>
         </div>
 
-        <a class="button" href="#">下载 PDF 简历</a>
+        <div class="downloadResume-wrapper">
+            <a class="downloadResume" href="./resume.pdf" download="download">下载 PDF 简历</a>
+        </div>
 
-        <p>
+        <p class="selfIntroduction">
             董晓兴，初级前端开发工程师<br>
             技能：前端开发，Vue开发，React开发
         </p>
     </main>
-    <section>
+    <section class="skills">
         <h2>技能</h2>
-        <ol>
-            <li>HTML 5 &amp; CSS 3</li>
-            <li>JavaScript</li>
-            <li>jQuery</li>
-            <li>Vue</li>
-            <li>React</li>
-            <li>HTTP</li>
+        <ol class="clearFix">
+            <li>HTML 5 &amp; CSS 3
+                <div class="progressBar clearFix">
+                    <div class="progress"></div>
+                </div>
+            </li>
+            <li>JavaScript
+                <div class="progressBar clearFix">
+                    <div class="progress"></div>
+                </div>
+            </li>
+            <li>jQuery
+                <div class="progressBar clearFix">
+                    <div class="progress clearFix"></div>
+                </div>
+            </li>
+            <li>Vue
+                <div class="progressBar clearFix">
+                    <div class="progress"></div>
+                </div>
+            </li>
+            <li>React
+                <div class="progressBar">
+                    <div class="progress"></div>
+                </div>
+            </li>
+            <li>HTTP
+                <div class="progressBar">
+                    <div class="progress"></div>
+                </div>
+            </li>
         </ol>
     </section>
-    <section>
+    <section class="portfolio">
         <h2>作品集</h2>
         <nav>
             <ol>
-                <li>所有</li>
-                <li>框架</li>
-                <li>原生 JS&amp;CSS</li>
+                <li id="portfolio1">所有</li>
+                <li id="portfolio2">框架</li>
+                <li id="portfolio3">原生 JS&amp;CSS</li>
             </ol>
+            <div class="portfolioBar">
+                <div id="bar" class="bar-inner state-1"></div>
+                <script>
+                    portfolio1.onclick = function () {
+                        bar.className = 'bar-inner state-1'
+                    };
+                    portfolio2.onclick = function () {
+                        bar.className = 'bar-inner state-2'
+                    };
+                    portfolio3.onclick = function () {
+                        bar.className = 'bar-inner state-3'
+                    };
+                </script>
+            </div>
         </nav>
-        <div class="jobs">
-            <div class="big"></div>
-            <div class="small"></div>
-            <div class="small"></div>
+        <div class="works">
+            <div class="big">
+                <img src="./images/1.jpg" alt="work-1">
+            </div>
+            <div class="small-1">
+                <img src="./images/2.jpg" alt="work-2">
+
+            </div>
+            <div class="small-2">
+                <img src="./images/3.jpg" alt="work-3">
+            </div>
         </div>
     </section>
 </body>
