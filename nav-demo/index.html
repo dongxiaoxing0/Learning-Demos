@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>我的导航</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header></header>
+    <div class="wrapper">
+        <main id="main"></main>
+    </div>
+    <footer></footer>
+    <script>
+        var row1 = ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p'];
+        var row2 = ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l'];
+        var row3 = ['z', 's', 'x', 'c', 'v', 'b', 'n', 'm'];
+        var container = [row1, row2, row3];
+        var hash = {
+            'q': 'qq.com', 'w': 'weibo.com', 'e': 'ele.me', 'r': 'renren.com', 't': 'tianya.com', 'y': 'youtube.com', 'u': 'uc.com', 'i': 'iqiyi.com', 'o': 'opera.com', 'p': undefined, 'a': 'acfun.tv', 's': 'sohu.com', 'z': 'zhihu.com', 'm': 'www.mcdonalds.com.cn'
+        }
+        var hashInLocalStorage = JSON.parse(localStorage.getItem('zzz') || 'null'); 
+			if(hashInLocalStorage){
+				hash = hashInLocalStorage
+			}
+        for (var index = 0; index < container.length; index = index + 1) {
+            var div = document.createElement('div');
+            main.appendChild(div);
+            div.className = 'row';
+            for (var rowIndex = 0; rowIndex < container[index].length; rowIndex = rowIndex + 1) {
+                var kbd = document.createElement('kbd');
+                var upperCase = container[index][rowIndex].toUpperCase();
+                var span = document.createElement('span');
+                span.className = 'text';
+                span.textContent = upperCase;
+                var img = document.createElement('img');
+                var domain = hash[container[index][rowIndex]];
+                if(domain){
+                    img.src = 'http://'+ domain + '/favicon.ico';
+                }else{
+                    img.src = '//i.loli.net/2017/11/10/5a05afbc5e183.png';
+                }
+                img.onerror = function(event){
+                    event.target.src = '//i.loli.net/2017/11/10/5a05afbc5e183.png';
+                }
+                var button = document.createElement('button');
+                button.textContent = '编辑';
+                button.id = container[index][rowIndex];
+                button.onclick = function(event){
+                    var button2 = event.target;
+                    var newUrl = prompt('给我一个网址');
+                    var key = button2.id;
+                    hash[key] =newUrl;
+                    var img2 = button2.previousSibiling;
+                    img2.src = 'http://'+newUrl + '/favicon.ico'
+                    img2.onerror = function(event){
+                    event.target.src = '//i.loli.net/2017/11/10/5a05afbc5e183.png';
+                    }
+                    localStorage.setItem('zzz', JSON.stringify(hash))
+                }
+                kbd.appendChild(img);
+                kbd.appendChild(button);
+                kbd.appendChild(span);
+                div.appendChild(kbd);
+            }
+        }
+        document.onkeypress = function(event){
+            var key = event.key;
+            var url = 'http://' + hash[key];
+            window.open(url, '_blank');
+        }
+    </script>
+</body>
+
+</html>
