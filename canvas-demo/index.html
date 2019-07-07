@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ch-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <title>我的画板</title>
+</head>
+
+<body>
+    <canvas id="canvas"></canvas>
+    <div id="actions" class="actions">
+        <button id="eraser">橡皮擦</button>
+        <button id="brush">画笔</button>
+    </div>
+    <script>
+        var canvas = document.getElementById('canvas');
+        var context = canvas.getContext('2d');
+        var pageWidth = document.documentElement.clientWidth;
+        var pageHeight = document.documentElement.clientHeight;
+        canvas.width = pageWidth;
+        canvas.height = pageHeight;
+        window.onresize = function () {
+            var pageWidth = document.documentElement.clientWidth;
+            var pageHeight = document.documentElement.clientHeight;
+            canvas.width = pageWidth;
+            canvas.height = pageHeight;
+        }
+        var using;
+        var lastPoint = { x: undefined, y: undefined };
+        var eraserEnabled = false;
+        canvas.onmousedown = function (event) {
+            using = true;
+            var x = event.clientX;
+            var y = event.clientY;
+            if (eraserEnabled) {
+                context.clearRect(x - 5, y - 5, 10, 10);
+            } else {
+                context.beginPath();
+                context.fillStyle = 'black';
+                context.arc(x, y, 3, 0, Math.PI * 2);
+                context.fill();
+                lastPoint = {
+                    x: x,
+                    y: y
+                }
+            }
+
+        }
+        canvas.onmousemove = function (event) {
+            var newPoint = {
+                x: event.clientX,
+                y: event.clientY
+            }
+            if (using) {
+                if (eraserEnabled) {
+                    context.clearRect(newPoint.x - 5, newPoint.y - 5, 10, 10);
+                } else {
+                    context.beginPath();
+                    context.strokeStyle = "black";
+                    context.moveTo(lastPoint.x, lastPoint.y);
+                    context.lineTo(newPoint.x, newPoint.y);
+                    context.lineWidth = 5;
+                    context.stroke();
+                    lastPoint = newPoint;
+                }
+            }
+        }
+        canvas.onmouseup = function () {
+            using = false;
+        }
+        var eraser = document.getElementById("eraser");
+        var brush = document.getElementById("brush");
+        var actions = document.getElementById("actions");
+        eraser.onclick = function (event) {
+            console.log(event)
+            eraserEnabled = true;
+            actions.className = "actions x";
+        }
+        brush.onclick = function () {
+            eraserEnabled = false;
+            actions.className = "actions";
+        }
+    </script>
+</body>
+
+</html>
