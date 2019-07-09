@@ -1,11 +1,23 @@
-body {
+* {
     margin: 0;
+    padding: 0;
 }
+ol,ul {
+    list-style: none;
+}
+.icon {
+    width: 1em; height: 1em;
+    vertical-align: -0.15em;
+    fill: black;
+    overflow: hidden;
+    padding-left: 5px;
+ }
 #canvas {
-    background: green;
+    position: fixed;
+    background: white;
     display: block;
 }
-.actions {
+/*.actions {
     position: fixed;
     left: 0;
     bottom: 0;
@@ -18,4 +30,44 @@ body {
 } 
 .actions.x > #eraser {
     display: none;
+}*/
+.actions {
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin: 5px 5px;
+}
+.actions svg {
+    height: 2em;
+    width: 2em;
+    transition: all 0.3s;
+    margin: 8px 5px;
+}
+.actions svg.active {
+    fill: red;
+    transform: scale(1.2);
+}
+.colors {
+    position: fixed;
+    top: 65px;
+    left: 15px; 
+}
+.colors > li {
+    width: 30px;
+    height: 30px; 
+    border-radius: 50%;
+    margin: 10px 0;
+    box-shadow: 0 0 3px rgba(0,0,0,0.25);
+}
+.red {
+    background: red;
+}
+.green {
+    background: green;
+}
+.blue {
+    background: blue;
+}
+.colors > li.active {
+    box-shadow: 0 0 5px rgba(0,0,0,1);
 }
