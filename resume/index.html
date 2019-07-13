@@ -20,6 +20,9 @@
 </head>
 
 <body>
+    <div id="siteWelcome" class="site-welcome active">
+        <div class="loading"></div>
+    </div>
     <div class="topNavBar">
         <div class="topNavBar-inner clearFix">
             <a class="logo" href="" alt="logo">
@@ -163,6 +166,11 @@
             </div>
         </div>
     </section>
+    <script>
+        setTimeout(function() {
+            siteWelcome.classList.remove('active');
+        }, 3000)
+    </script>
 </body>
 
 </html>
