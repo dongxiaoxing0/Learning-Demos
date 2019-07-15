@@ -30,13 +30,27 @@
             </a>
             <nav>
                 <ul class="clearFix">
-                    <li><a href="">关于</a></li>
-                    <li><a href="">技能</a></li>
-                    <li><a href="">作品</a></li>
-                    <li><a href="">博客</a></li>
-                    <li><a href="">日历</a></li>
-                    <li><a href="">联系方式</a></li>
-                    <li><a href="">其他</a></li>
+                    <li class="menuTrigger"><a href="#siteAbout">关于</a></li>
+                    <li class="menuTrigger"><a href="#siteSkills">技能</a></li>
+                    <li class="menuTrigger">
+                        <a href="#sitePortfolio">作品</a>
+                        <ul>
+                            <li>作品1</li>
+                            <li>作品2</li>
+                            <li>作品3</li>
+                        </ul>
+                    </li>
+                    <li class="menuTrigger">
+                        <a href="">博客</a>
+                        <ul>
+                            <li>博客1</li>
+                            <li>博客2</li>
+                            <li>博客3</li>
+                        </ul>
+                    </li>
+                    <li class="menuTrigger"><a href="">日历</a></li>
+                    <li class="menuTrigger"><a href="">联系方式</a></li>
+                    <li class="menuTrigger"><a href="">其他</a></li>
                 </ul>
             </nav>
         </div>
@@ -45,7 +59,7 @@
         <div class="mask"></div>
     </div>
     <main>
-        <div class="userCard">
+        <div id="siteAbout" class="userCard">
             <div class="pictureAndText clearFix">
                 <div class="picture">
                     <img src="./images/avatar.jpg" alt="头像">
@@ -95,7 +109,7 @@
             技能：前端开发，Vue开发，React开发
         </p>
     </main>
-    <section class="skills">
+    <section id="siteSkills" class="skills">
         <h2>技能</h2>
         <ol class="clearFix">
             <li>HTML 5 &amp; CSS 3
@@ -130,7 +144,7 @@
             </li>
         </ol>
     </section>
-    <section class="portfolio">
+    <section id="sitePortfolio" class="portfolio">
         <h2>作品集</h2>
         <nav>
             <ol>
@@ -167,15 +181,39 @@
         </div>
     </section>
     <script>
-        setTimeout(function() {
+        setTimeout(function () {
             siteWelcome.classList.remove('active');
         }, 1000);
 
-        window.onscroll = function() {
+        window.onscroll = function () {
             if (window.scrollY) {
                 topNavBar.classList.add('sticky');
-            }else{
+            } else {
                 topNavBar.classList.remove('sticky');
+            }
+        }
+
+        let liTags = document.getElementsByClassName('menuTrigger');
+        for (let i = 0; i < liTags.length; i++) {
+            liTags[i].onmouseenter = function (x) {
+                let li = x.currentTarget;
+                li.classList.add('active');
+            }
+            liTags[i].onmouseleave = function (x) {
+                let li = x.currentTarget;
+                li.classList.remove('active');
+            }
+        }
+
+        let aTags = document.querySelectorAll('.topNavBar nav > ul > li > a');
+        for (let i = 0; i < aTags.length; i++) {
+            aTags[i].onclick = function (x) {
+                x.preventDefault();
+                let a = x.currentTarget;
+                let href = a.getAttribute('href');
+                let element = document.querySelector(href);
+                let pageTop = element.offsetTop;
+                window.scrollTo(0,pageTop-60);
             }
         }
     </script>
