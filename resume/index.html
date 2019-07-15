@@ -180,6 +180,7 @@
             </div>
         </div>
     </section>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/17.4.0/Tween.min.js"></script>
     <script>
         setTimeout(function () {
             siteWelcome.classList.remove('active');
@@ -206,16 +207,31 @@
         }
 
         let aTags = document.querySelectorAll('.topNavBar nav > ul > li > a');
+        function animate(time) {
+            requestAnimationFrame(animate);
+            TWEEN.update(time);
+        }
+        requestAnimationFrame(animate);
         for (let i = 0; i < aTags.length; i++) {
             aTags[i].onclick = function (x) {
                 x.preventDefault();
-                let a = x.currentTarget;
-                let href = a.getAttribute('href');
-                let element = document.querySelector(href);
-                let pageTop = element.offsetTop;
-                window.scrollTo(0,pageTop-60);
+                let top = document.querySelector(x.currentTarget.getAttribute('href')).offsetTop;
+                let s = top -80 - window.scrollY
+                let t = Math.abs((s/100)*300)
+                if (t > 500) {
+                    t = 500
+                }
+                const coords = { y: window.scrollY }; 
+                const tween = new TWEEN.Tween(coords) 
+                    .to({ y: top - 80 }, t) 
+                    .easing(TWEEN.Easing.Quadratic.InOut) 
+                    .onUpdate(() => {
+                        window.scrollTo(0,coords.y)
+                    })
+                    .start();
             }
         }
+
     </script>
 </body>
 
