@@ -1,0 +1,35 @@
+.window {
+    width: 400px;
+    height: 300px;
+    margin: 20px auto;
+}
+.images {
+    position: relative;
+    width: 400px;
+    height: 300px;
+    overflow: hidden;
+}
+.images > img {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    transition: all 0.5s;
+}
+.images > img.show {
+    transform: translateX(-100%);
+    z-index: 2;
+}
+.images > img.leave {
+    transform: translateX(-200%);
+    z-index: 1;
+}
+.images > img.enter {
+    transform: translateX(0);
+}
+.buttons{
+    display: block;
+    text-align: center;
+}
+.active {
+    color: red;
+}
