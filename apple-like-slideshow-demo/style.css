@@ -1,0 +1,82 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+ul,ol,li {
+    list-style: none;
+}
+.wrapper {
+    box-shadow: 0 0 3px 3px rgb(0,0,0,0.1);
+    width: 920px;
+    margin: 30px auto;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    border: 1px solid rgb(255,255,255);
+}
+.window {
+    margin: 0 auto;
+    width: 920px;
+    height: 400px;
+    overflow: hidden;
+}
+.images {
+    display: flex;
+    align-items: flex-start;
+    transition: all 0.5s;
+}
+.buttons {
+    margin: 0 auto;
+    width: 920px;
+    text-align: center;
+    height: 45px;
+    box-shadow: inset 0 3px 3px rgb(0,0,0,0.1);
+    background: linear-gradient(to top ,rgb(236,236,236),rgb(255,255,255))
+}
+.buttons > ul{
+    display: inline-block;
+    position: relative;
+}
+.buttons > ul::after {
+    content: '';
+    display: block;
+    clear: both;
+}
+.buttons > ul::before {
+    content: '';
+    display: inline-block;
+    width: 2px;
+    height: 45px;
+    background: white;
+    position: absolute;
+    top: 0;
+    right: 100%;
+}
+.buttons > ul > li {
+    float: left;
+    width: 39px;
+    height: 25px;
+    vertical-align: top;
+    padding: 10px 10px;
+    border-right: 2px;
+    border-right-style: solid;
+    border-color: white;
+    box-shadow: 0 0 1px rgb(0,0,0,0.3);
+    position: relative;
+}
+.buttons > ul > li:hover {
+    box-shadow: inset 0 3px 3px rgb(255,255,255,0.5);
+}
+.buttons > ul > li.active {
+    background: radial-gradient(ellipse at center, rgba(233, 233, 233, 1.0), rgba(165, 165, 165, 1.0));    
+}
+.buttons > ul > li.active::before {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 0;
+    top: 0;
+    left: 23px;
+    border: 6px solid transparent;
+    border-bottom: 0;
+    border-top-color: white;
+}

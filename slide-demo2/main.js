@@ -23,4 +23,4 @@ var timerId = setInterval(function(){
     console.log()
     n += 1
     console.log(n % size)
-},2000)
+},2000) 
