@@ -4,6 +4,7 @@ for (let i = 0; i < $buttons.length; i++) {
     $buttons.eq(i).on('click', function (e) {
         let index = $(e.currentTarget).index()
         goToIndex(index)
+        n = index
     })
 }
 
